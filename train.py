@@ -224,7 +224,6 @@ def argument_inputs():
     parser.add_argument('--data_dir', type=str, 
                         default='./dataset/',
                         help='The directory that contains the images, including original folder and the emotion folders.')
-    parser.add_argument('--use_wandb',  action="store_true",help="Use wandb") 
     parser.add_argument('--ema_decay',  type=float, default=0.99 ,help="Use use_ema") 
 
     parser.add_argument('--precision', type=int, default=16, choices=[16, 32])
@@ -270,18 +269,12 @@ if __name__ == '__main__':
                         log_dir=log_dir,
                         ema_decay=args.ema_decay)
     
-    wandb_logger = WandbLogger(project='finetune_vae', 
-                               name='finetune_vae',
-                               entity="ssl2022", config=args, dir=log_dir,
-                               ) if args.use_wandb else None
-    
     trainer = Trainer(min_epochs=1, 
                           max_epochs=args.num_epochs, 
                         precision=args.precision,
                           strategy=args.strategy, 
                           gpus=args.n_gpus, 
                           num_sanity_val_steps=1 if args.val_size > 0 else 0,
-                          logger=wandb_logger,
                           default_root_dir=log_dir,)
     
 

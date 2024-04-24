@@ -225,7 +225,7 @@ def argument_inputs():
                         default='./dataset/',
                         help='The directory that contains the images, including original folder and the emotion folders.')
     parser.add_argument('--use_wandb',  action="store_true",help="Use wandb") 
-    parser.add_argument('--use_ema',  action="store_true",help="Use use_ema") 
+    parser.add_argument('--ema_decay',  type=float, default=0.99 ,help="Use use_ema") 
 
     parser.add_argument('--precision', type=int, default=16, choices=[16, 32])
     parser.add_argument('--image_size', type=int, default=384)
@@ -248,7 +248,7 @@ def argument_inputs():
 if __name__ == '__main__':
     args = argument_inputs()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    file_names = f"size_({args.image_size})_val({args.val_size})_ema({args.use_ema})_bs({args.batch_size})_lr({args.lr})_epochs({args.num_epochs})_kl({args.kl_weight})_lpips({args.lpips_loss_weight})_{args.note}"
+    file_names = f"size_({args.image_size})_val({args.val_size})_ema({args.ema_decay})_bs({args.batch_size})_lr({args.lr})_epochs({args.num_epochs})_kl({args.kl_weight})_lpips({args.lpips_loss_weight})_{args.note}"
     log_dir = f"{args.output_dir}/{file_names}"
     os.makedirs(log_dir, exist_ok=True)
 
@@ -268,7 +268,7 @@ if __name__ == '__main__':
                         lr=args.lr, 
                         device=device,
                         log_dir=log_dir,
-                        use_ema=args.use_ema)
+                        ema_decay=args.ema_decay)
     
     wandb_logger = WandbLogger(project='finetune_vae', 
                                name='finetune_vae',

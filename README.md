@@ -10,14 +10,14 @@ Copy `ldm` folder from this [repo](https://github.com/lllyasviel/ControlNet/tree
 For training, run the following script:
 
 ```python 
-CUDA_VISIBLE_DEVICES="0,1,2,3,4,5,6,7" python train.py \
-						--data_dir <YOUR DATA FOLDER>
-						--batch_size 2 \
-						--num_epochs 20 \
-						--lr 2e-5 \
-                        			--val_size 0.1 \
-						--precision 16 \
-						--image_size <YOUR DESIRED SIZE> \
-						--lpips_loss_weight 1.0 \
-						--ema_decay 0.99\
+python train.py \
+	--data_dir <YOUR DATA FOLDER>
+	--batch_size 2 \
+	--num_epochs 20 \
+	--lr 2e-5 \
+	--val_size 0.1 \
+	--precision 16 \
+	--image_size <YOUR DESIRED SIZE> \
+	--lpips_loss_weight 1.0 \
+	--ema_decay 0.99\
 ```

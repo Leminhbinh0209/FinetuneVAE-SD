@@ -1,5 +1,6 @@
-This repository is created to fine-tune your VAE of Stable Diffusion model, which you can change input size.
+This repository is created to fine-tune your VAE of Stable Diffusion model, which you can change input image size.
 
+Note: I follow the guidance [here](https://huggingface.co/stabilityai/sd-vae-ft-mse-original/blob/main/README.md), in which some first epochs are trained with (l1 + Lpips), later epochs are trained with (l2 + 0.1*Lpips) loss.
 
 Please download pre-trained SD model [here](https://huggingface.co/runwayml/stable-diffusion-v1-5/blob/main/v1-5-pruned.ckpt), and put into `sd_model` folder.
 

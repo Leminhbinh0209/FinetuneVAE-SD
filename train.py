@@ -10,7 +10,7 @@ import torch.optim as optim
 import torch.nn as nn
 import torch.nn.functional as F
 import random
-from ldm.util import   instantiate_from_config
+
 import pytorch_lightning as pl
 from torchvision import transforms
 from torch.utils.data import Dataset
@@ -21,7 +21,8 @@ from PIL import Image
 from argparse import ArgumentParser
 from diffusers import  AutoencoderKL
 import lpips
-from ema import LitEma
+from ldm.util import   instantiate_from_config
+from ldm.modules.ema import LitEma
 from contextlib import contextmanager
 
 torch.cuda.empty_cache()

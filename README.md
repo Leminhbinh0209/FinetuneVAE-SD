@@ -1,4 +1,4 @@
-This repository is created to fine-tune your VAE of Stable Diffusion model, which you can change input image size.
+This repository is created to fine-tune your VAE model of Stable Diffusion model, which you can change input image size.
 
 Note: I follow the guidance [here](https://huggingface.co/stabilityai/sd-vae-ft-mse-original/blob/main/README.md), in which some first epochs are trained with (l1 + Lpips), later epochs are trained with (l2 + 0.1*Lpips) loss.
 
@@ -9,13 +9,13 @@ Copy `ldm` folder from this [repo](https://github.com/lllyasviel/ControlNet/tree
 
 For training, run the following script:
 
-```
+```python 
 CUDA_VISIBLE_DEVICES="0,1,2,3,4,5,6,7" python train.py \
 						--data_dir <YOUR DATA FOLDER>
 						--batch_size 2 \
 						--num_epochs 20 \
 						--lr 2e-5 \
-                        --val_size 0.1 \
+                        			--val_size 0.1 \
 						--precision 16 \
 						--image_size <YOUR DESIRED SIZE> \
 						--lpips_loss_weight 1.0 \

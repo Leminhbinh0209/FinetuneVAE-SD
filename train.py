@@ -252,9 +252,9 @@ if __name__ == '__main__':
     log_dir = f"{args.output_dir}/{file_names}"
     os.makedirs(log_dir, exist_ok=True)
 
-    config = OmegaConf.load("./configs/config_train_dldm.yaml")
-    vae_config = config.model.params.first_stage_config
-    input_path = "/sd_model/v1-5-pruned.ckpt"
+    config = OmegaConf.load("./vae_config.yaml")
+    vae_config = config.model
+    input_path = "./sd_model/v1-5-pruned.ckpt"
     vae_weight = get_vae_weights(input_path)
     data_module = DataModule(args.data_dir, 
                              batch_size=args.batch_size, 

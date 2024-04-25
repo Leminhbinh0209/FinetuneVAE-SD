@@ -21,4 +21,4 @@ python train.py \
 	--lpips_loss_weight 1.0 \
 	--ema_decay 0.99\
 ```
-TO-DO: As the denoisor of SD is not fine-tuned in this code, training the VAE alone on new dataset may shift the latent space. There may need to regularize the old the current latent vector with old latent vector in the teach-student: `reg = (self.model.encdoe(x).saples() - old_vae.encode(x).sample().detach()).pow(2)`
+

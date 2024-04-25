@@ -10,7 +10,6 @@ import torch.optim as optim
 import torch.nn as nn
 import torch.nn.functional as F
 import random
-
 import pytorch_lightning as pl
 from torchvision import transforms
 from torch.utils.data import Dataset
@@ -19,7 +18,6 @@ from pytorch_lightning.loggers import WandbLogger
 import wandb
 from PIL import Image
 from argparse import ArgumentParser
-from diffusers import  AutoencoderKL
 import lpips
 from ldm.util import   instantiate_from_config
 from ldm.modules.ema import LitEma
@@ -96,13 +94,10 @@ class FinetuneVAE(pl.LightningModule):
         self.momentum = momentum
         self.weight_decay = weight_decay
         self.optim = optim
-        self.encoder = AutoencoderKL()
         self.model =  instantiate_from_config(vae_config)
         self.model.load_state_dict(vae_weights, strict=True)
         self.model.train()
         self.precision = precision
-        self.use_ema = use_ema
-
         self.log_dir = log_dir
         self.log_one_batch = False
         self.use_ema = ema_decay > 0     
